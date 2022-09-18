@@ -2,15 +2,18 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { Service } from './users/.service';
 import { UserService } from './users/user/user.service';
 import { TypeOrmModule} from '@nestjs/typeorm';
 import entities, { User } from './utils/typeorm';
+import { PassportModule} from '@nestjs/passport';
 
 @Module({
-  imports: [ConfigModule.forRoot({envFilePath: '.env.development'}), 
+  imports: [
+  ConfigModule.forRoot({envFilePath: '.env.development'}), 
+  PassportModule.register({ session : true}),
   TypeOrmModule.forFeature([User]),
   AuthModule,
   UsersModule,
