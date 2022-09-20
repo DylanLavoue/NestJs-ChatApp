@@ -7,8 +7,10 @@ import { UsersModule } from './users/users.module';
 import { Service } from './users/.service';
 import { UserService } from './users/user/user.service';
 import { TypeOrmModule} from '@nestjs/typeorm';
-import entities, { User } from './utils/typeorm';
+import  { User } from './utils/typeorm';
 import { PassportModule} from '@nestjs/passport';
+import entities from './utils/typeorm'
+
 
 @Module({
   imports: [
