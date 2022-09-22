@@ -16,9 +16,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const sessionRepository = getRepository(Session);
   app.setGlobalPrefix('api');
+  app.enableCors({ origin : ['http://localhost:3000'], credentials : true})
   app.useGlobalPipes(new ValidationPipe());
-
-  app.use(session({
+  app.use(
+    session({
     secret : 'COOKIE_SECRET',
     saveUninitialized : false,
     resave: false,

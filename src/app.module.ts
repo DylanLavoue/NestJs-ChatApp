@@ -9,6 +9,7 @@ import { UserService } from './users/user/user.service';
 import { TypeOrmModule} from '@nestjs/typeorm';
 import  { User } from './utils/typeorm';
 import { PassportModule} from '@nestjs/passport';
+import { ConversationsModule } from './conversations/conversations.module';
 import entities from './utils/typeorm'
 
 
@@ -31,7 +32,8 @@ import entities from './utils/typeorm'
 
   }
     
-  )
+  ),
+  ConversationsModule
   ],
   controllers: [AppController],
   providers: [AppService, Service, UserService],
