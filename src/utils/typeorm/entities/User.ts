@@ -1,5 +1,7 @@
 import { Exclude } from 'class-transformer';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm'
+import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
+import { Participants } from './Participants';
 
 @Entity({ name : 'users'})
 export class User {
@@ -21,7 +23,9 @@ export class User {
     password : string;
 
 
-
+    @OneToOne(() => Participants)
+    @JoinColumn()
+    participant: Participants;
 
 }
 

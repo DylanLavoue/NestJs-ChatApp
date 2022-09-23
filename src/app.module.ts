@@ -10,7 +10,10 @@ import { TypeOrmModule} from '@nestjs/typeorm';
 import  { User } from './utils/typeorm';
 import { PassportModule} from '@nestjs/passport';
 import { ConversationsModule } from './conversations/conversations.module';
+import { ParticipantsModule } from './participants/participants.module';
+import { ParticipantsService } from './participants/participants.service';
 import entities from './utils/typeorm'
+import { ConversationService } from './conversations/conversation.service';
 
 
 @Module({
@@ -29,11 +32,10 @@ import entities from './utils/typeorm'
     database: 'chatapp_db',
     synchronize : true,
     entities,
-
-  }
-    
+  } 
   ),
-  ConversationsModule
+  ConversationsModule,
+  ParticipantsModule
   ],
   controllers: [AppController],
   providers: [AppService, Service, UserService],
