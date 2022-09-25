@@ -4,8 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { Service } from './users/.service';
-import { UserService } from './users/user/user.service';
+import { UserService } from './users/user.service';
 import { TypeOrmModule} from '@nestjs/typeorm';
 import  { User } from './utils/typeorm';
 import { PassportModule} from '@nestjs/passport';
@@ -14,22 +13,22 @@ import { ParticipantsModule } from './participants/participants.module';
 import { ParticipantsService } from './participants/participants.service';
 import entities from './utils/typeorm'
 import { ConversationService } from './conversations/conversation.service';
-
+import 'reflect-metadata'
 
 @Module({
   imports: [
-  ConfigModule.forRoot({envFilePath: '.env.development'}), 
+  ConfigModule.forRoot({envFilePath: '.env'}), 
   PassportModule.register({ session : true}),
   TypeOrmModule.forFeature([User]),
   AuthModule,
   UsersModule,
   TypeOrmModule.forRoot({
     type: 'mysql',
-    host : 'localhost',
+    host : process.env.MYSQL_DB_HOST,
     port: parseInt(process.env.MYSQL_DB_PORT),
-    username: 'root',
-    password: 'SchiftProject2022*',
-    database: 'chatapp_db',
+    username: process.env.MYSQL_DB_USERNAME,
+    password: process.env.MYSQL_DB_PASSWORD,
+    database: process.env.MYSQL_DB_DATABASE,
     synchronize : true,
     entities,
   } 
@@ -38,6 +37,6 @@ import { ConversationService } from './conversations/conversation.service';
   ParticipantsModule
   ],
   controllers: [AppController],
-  providers: [AppService, Service, UserService],
+  providers: [AppService, UserService],
 })
 export class AppModule {}

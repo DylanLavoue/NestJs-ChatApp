@@ -1,6 +1,5 @@
 import { Exclude } from 'class-transformer';
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm'
-import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 import { Participants } from './Participants';
 
 @Entity({ name : 'users'})

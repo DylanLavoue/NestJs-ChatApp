@@ -4,9 +4,6 @@ import { IUserService } from "src/users/user";
 import { Services } from "src/utils/constants";
 import { User } from "src/utils/typeorm";
 
-
-
-
 @Injectable()
 export class SessionSerializer extends PassportSerializer {
 

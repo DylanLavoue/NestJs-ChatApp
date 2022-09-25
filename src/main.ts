@@ -20,7 +20,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(
     session({
-    secret : 'COOKIE_SECRET',
+    secret : COOKIE_SECRET,
     saveUninitialized : false,
     resave: false,
     cookie: {
@@ -34,7 +34,7 @@ async function bootstrap() {
   app.use(passport.session());
 
   try {
-    await app.listen( '3001', () => console.log(`Running on Port ${PORT}`));
+    await app.listen( PORT, () => console.log(`Running on Port ${PORT}`));
   } catch (error){
     console.log(error)
   }

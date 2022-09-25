@@ -1,6 +1,6 @@
 export enum Routes {
     AUTH = 'auth',
-    USERS = "USERS",
+    USERS = 'users',
     CONVERSATIONS = 'conversations',
     PARTICIPANTS = "participants",
 }

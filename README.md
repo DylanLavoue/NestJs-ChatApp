@@ -78,3 +78,6 @@ mdp : SchiftProject2022*
 use chatapp_db
 SHOW TABLES;
  SELECT * FROM users;
+
+
+killall -9 node

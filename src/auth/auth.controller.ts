@@ -13,7 +13,7 @@ import { Request, Response } from 'express';
 export class AuthController {
 
     constructor(
-        // @Inject(Services.AUTH) private authService: IAuthService,
+        @Inject(Services.AUTH) private authService: IAuthService,
         @Inject(Services.USERS) private userService: IUserService,
         )  {}
 
@@ -27,13 +27,12 @@ export class AuthController {
     @Post('login')
     @UseGuards(LocalAuthGuard)
     login(@Res() res: Response){
-        return res.send(HttpStatus.OK)
+    return res.sendStatus(HttpStatus.OK)
     }
 
     @Get('status')
     @UseGuards(AuthenticatedGuard)
     status(@Req() req : Request, @Res() res : Response ){
-        console.log(req.user);
         res.send(req.user)
     }
 

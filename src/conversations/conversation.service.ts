@@ -13,14 +13,15 @@ export class ConversationService implements IConversationsService {
     constructor(
         @InjectRepository(Conversation) 
         private readonly conversationRepository: Repository<Conversation>,
+
+        // invoke methods from other modules instead of each methods all the time. 
         @Inject(Services.PARTICIPANTS)
         private readonly participantsService: IParticipantsService,
     ){
 
     }
 
-    async createConversation(params : CreateConversationParams) {
-        // const participant = await this.participantsService.findParticipant(params);
+    async createConversation(params : CreateConversationParams) { 
         const recipient = await this.participantsService.findParticipant({
             id: params.recipientId,
         });

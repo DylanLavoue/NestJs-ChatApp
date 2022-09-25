@@ -13,8 +13,8 @@ export type ValidateUserDetails = {
 };
 
 export type FindUserParams = Partial<{
-    id : number;
-    email : string;
+    id: number;
+    email: string;
 }>;
 
 export type CreateConversationParams = {
