@@ -21,7 +21,6 @@ export class AuthController {
    async registerUser(@Body() createUserDto: CreateUserDto){
         console.log(createUserDto);
        return instanceToPlain(await this.userService.createUser(createUserDto)) ;
-   
     }
 
     @Post('login')

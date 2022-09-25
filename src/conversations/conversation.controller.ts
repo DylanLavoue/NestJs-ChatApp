@@ -5,6 +5,7 @@ import { IUserService } from 'src/users/user';
 import { Routes, Services } from 'src/utils/constants';
 import { AuthUser } from 'src/utils/decorators';
 import { User } from 'src/utils/typeorm';
+import { CustomRepositoryCannotInheritRepositoryError } from 'typeorm';
 import { IConversationsService } from './conversations';
 import { CreateConversationDto } from './dtos/CreateConversation.dto';
 
@@ -16,8 +17,6 @@ export class ConversationController {
     constructor(
         @Inject(Services.CONVERSATIONS) 
         private readonly conversationsService : IConversationsService,
-        @Inject(Services.USERS)
-        private readonly userService : IUserService,
         ){}
 
 
@@ -26,10 +25,7 @@ export class ConversationController {
     async  createConversation(
         @AuthUser() user : User,  
         @Body() createConversationPayload: CreateConversationDto){
-       const userDB = await this.userService.findUser({
-           id: user.id
-       });
-      
+      return  this.conversationsService.createConversation(user, createConversationPayload);
     }
 
 

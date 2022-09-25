@@ -32,3 +32,7 @@ export type findParticipantParams = Partial<{
 export interface AuthenticatedRequest extends Request {
     user: User; 
 }
+
+export type createParticipantParams = {
+    id : number
+}
